@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+  <property>
+    <name>dfs.replication</name>
+    <value>3</value>
+  </property>
+
+  <property>
+    <name>dfs.safemode.extension</name>
+    <value>0</value>
+  </property>
+
+  <property>
+    <name>dfs.block.size</name>
+    <value>268435456</value>
+  </property>
+
+  <property>
+    <name>dfs.name.dir</name>
+    <value>/data01/dfs/nn,/data02/dfs/nn</value>
+  </property>
+
+  <property>
+    <name>dfs.data.dir</name>
+    <value>/data00/dfs/dn,/data01/dfs/dn,/data02/dfs/dn,/data03/dfs/dn,/data04/dfs/dn,/data05/dfs/dn</value>
+  </property>
+
+  <property>
+    <name>fs.checkpoint.dir</name>
+    <value>/data01/dfs/snn</value>
+  </property>
+
+</configuration>
