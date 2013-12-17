@@ -1,0 +1,142 @@
+heat_template_version: 2013-05-23
+
+description: Deploy Hadoop Cluster
+
+parameters:
+  keyname:
+    type: string
+    description: Key name for loggin in to instances
+  imagename:
+    type: string
+    description: Image name
+
+resources:
+  node01:
+    type: OS::Nova::Server
+    properties:
+      key_name: { get_param: keyname }
+      image: { get_param: imagename }
+      flavor: m1.small
+      name: node01
+      user_data:
+        str_replace:
+          template: |
+            #!/bin/bash
+            echo "update /etc/hosts"
+            node01_ip=$(ifconfig eth0 | awk -F':' '/inet addr/{split($2,_," ");print _[1]}')
+            cat << EOF >> /etc/hosts
+            $node01_ip node01
+            $node02_ip node02
+            $node03_ip node03
+            $node04_ip node04
+            $node05_ip node05
+            EOF
+            echo "Install Hadoop Packages"
+            add-apt-repository -y ppa:webupd8team/java
+            add-apt-repository -y ppa:hadoop-ubuntu/stable
+            apt-get update && sudo apt-get -y upgrade
+            echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+            echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
+            apt-get -y install oracle-java7-installer
+            apt-get -y install hadoop
+            for file in core-site.xml hdfs-site.xml mapred-site.xml masters slaves; do
+              wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
+                  -N -P /usr/lib/hadoop/conf
+            done
+          params:
+            $node02_ip: { get_attr: [ node02, first_address ] }
+            $node03_ip: { get_attr: [ node03, first_address ] }
+            $node04_ip: { get_attr: [ node04, first_address ] }
+            $node05_ip: { get_attr: [ node05, first_address ] }
+  node02:
+    type: OS::Nova::Server
+    properties:
+      key_name: { get_param: keyname }
+      image: { get_param: imagename }
+      flavor: m1.small
+      name: node02
+      user_data:
+        str_replace:
+          template: |
+            #!/bin/bash
+            echo "Install Hadoop Packages"
+            add-apt-repository -y ppa:webupd8team/java
+            add-apt-repository -y ppa:hadoop-ubuntu/stable
+            apt-get update && sudo apt-get -y upgrade
+            echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+            echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
+            apt-get -y install oracle-java7-installer
+            apt-get -y install hadoop
+            for file in core-site.xml hdfs-site.xml mapred-site.xml masters slaves; do
+              wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
+                  -N -P /usr/lib/hadoop/conf
+            done
+  node03:
+    type: OS::Nova::Server
+    properties:
+      key_name: { get_param: keyname }
+      image: { get_param: imagename }
+      flavor: m1.small
+      name: node03
+      user_data:
+        str_replace:
+          template: |
+            #!/bin/bash
+            echo "Install Hadoop Packages"
+            add-apt-repository -y ppa:webupd8team/java
+            add-apt-repository -y ppa:hadoop-ubuntu/stable
+            apt-get update && sudo apt-get -y upgrade
+            echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+            echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
+            apt-get -y install oracle-java7-installer
+            apt-get -y install hadoop
+            for file in core-site.xml hdfs-site.xml mapred-site.xml masters slaves; do
+              wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
+                  -N -P /usr/lib/hadoop/conf
+            done
+  node04:
+    type: OS::Nova::Server
+    properties:
+      key_name: { get_param: keyname }
+      image: { get_param: imagename }
+      flavor: m1.small
+      name: node04
+      user_data:
+        str_replace:
+          template: |
+            #!/bin/bash
+            echo "Install Hadoop Packages"
+            add-apt-repository -y ppa:webupd8team/java
+            add-apt-repository -y ppa:hadoop-ubuntu/stable
+            apt-get update && sudo apt-get -y upgrade
+            echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+            echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
+            apt-get -y install oracle-java7-installer
+            apt-get -y install hadoop
+            for file in core-site.xml hdfs-site.xml mapred-site.xml masters slaves; do
+              wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
+                  -N -P /usr/lib/hadoop/conf
+            done
+  node05:
+    type: OS::Nova::Server
+    properties:
+      key_name: { get_param: keyname }
+      image: { get_param: imagename }
+      flavor: m1.small
+      name: node05
+      user_data:
+        str_replace:
+          template: |
+            #!/bin/bash
+            echo "Install Hadoop Packages"
+            add-apt-repository -y ppa:webupd8team/java
+            add-apt-repository -y ppa:hadoop-ubuntu/stable
+            apt-get update && sudo apt-get -y upgrade
+            echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+            echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
+            apt-get -y install oracle-java7-installer
+            apt-get -y install hadoop
+            for file in core-site.xml hdfs-site.xml mapred-site.xml masters slaves; do
+              wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
+                  -N -P /usr/lib/hadoop/conf
+            done
