@@ -1,0 +1,107 @@
+heat_template_version: 2013-05-23
+
+description: Deploy Salt Cluster
+
+parameters:
+  keyname:
+    type: string
+    description: Key name for loggin in to instances
+  imagename:
+    type: string
+    description: Image name
+
+resources:
+  master:
+    type: OS::Nova::Server
+    properties:
+      key_name: { get_param: keyname }
+      image: { get_param: imagename }
+      flavor: m1.small
+      name: master
+      user_data:
+        str_replace:
+          template: |
+            #!/bin/bash
+            echo "Install Salt Master"
+            curl -L http://bootstrap.saltstack.org | sudo sh -s -- -M -N git develop
+            mkdir /srv/salt
+            echo -e 'file_roots:\n  base:\n    - /srv/salt' >> /etc/salt/master
+            pkill salt-master
+            service iptables stop
+            salt-master -d
+  minion01:
+    type: OS::Nova::Server
+    properties:
+      key_name: { get_param: keyname }
+      image: { get_param: imagename }
+      flavor: m1.small
+      name: minion01
+      user_data:
+        str_replace:
+          template: |
+            #!/bin/bash
+            echo "Install Salt Minion"
+            curl -L http://bootstrap.saltstack.org | sudo sh -s -- git develop
+            echo master: $master >> /etc/salt/minion
+            pkill salt-minion
+            service iptables stop
+            salt-minion -d
+          params:
+            $master: { get_attr: [ master, first_address ] }
+  minion02:
+    type: OS::Nova::Server
+    properties:
+      key_name: { get_param: keyname }
+      image: { get_param: imagename }
+      flavor: m1.small
+      name: minion02
+      user_data:
+        str_replace:
+          template: |
+            #!/bin/bash
+            echo "Install Salt Minion"
+            curl -L http://bootstrap.saltstack.org | sudo sh -s -- git develop
+            echo master: $master >> /etc/salt/minion
+            pkill salt-minion
+            service iptables stop
+            salt-minion -d
+          params:
+            $master: { get_attr: [ master, first_address ] }
+  minion03:
+    type: OS::Nova::Server
+    properties:
+      key_name: { get_param: keyname }
+      image: { get_param: imagename }
+      flavor: m1.small
+      name: minion03
+      user_data:
+        str_replace:
+          template: |
+            #!/bin/bash
+            echo "Install Salt Minion"
+            curl -L http://bootstrap.saltstack.org | sudo sh -s -- git develop
+            echo master: $master >> /etc/salt/minion
+            pkill salt-minion
+            service iptables stop
+            salt-minion -d
+          params:
+            $master: { get_attr: [ master, first_address ] }
+  minion04:
+    type: OS::Nova::Server
+    properties:
+      key_name: { get_param: keyname }
+      image: { get_param: imagename }
+      flavor: m1.small
+      name: minion04
+      user_data:
+        str_replace:
+          template: |
+            #!/bin/bash
+            echo "Install Salt Minion"
+            curl -L http://bootstrap.saltstack.org | sudo sh -s -- git develop
+            echo master: $master >> /etc/salt/minion
+            pkill salt-minion
+            service iptables stop
+            salt-minion -d
+          params:
+            $master: { get_attr: [ master, first_address ] }
