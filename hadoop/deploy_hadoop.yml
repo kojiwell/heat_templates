@@ -57,7 +57,7 @@ resources:
               chown hdfs:hdfs $dir
             done
             chown -R hdfs:hdfs /var/lib/hadoop/cache
-	    echo "hdfs	ALL=(ALL)	NOPASSWD: ALL" >> /etc/sudoers
+            echo "hdfs	ALL=(ALL)	NOPASSWD: ALL" >> /etc/sudoers
             sudo -u hdfs ssh-keygen -N "" -C "hdfs" -f /usr/lib/hadoop/.ssh/id_rsa
             cp /home/ec2-user/.ssh/authorized_keys /usr/lib/hadoop/.ssh/
             cat /usr/lib/hadoop/.ssh/id_rsa.pub >> /usr/lib/hadoop/.ssh/authorized_keys
@@ -96,7 +96,7 @@ resources:
               chown hdfs:hdfs $dir
             done
             chown -R hdfs:hdfs /var/lib/hadoop/cache
-	    echo "hdfs	ALL=(ALL)	NOPASSWD: ALL" >> /etc/sudoers
+            echo "hdfs	ALL=(ALL)	NOPASSWD: ALL" >> /etc/sudoers
             sudo -u hdfs ssh-keygen -N "" -C "hdfs" -f /usr/lib/hadoop/.ssh/id_rsa
             cp /home/ec2-user/.ssh/authorized_keys /usr/lib/hadoop/.ssh/
             chown hdfs:hdfs /usr/lib/hadoop/.ssh/authorized_keys
@@ -129,7 +129,7 @@ resources:
               chown hdfs:hdfs $dir
             done
             chown -R hdfs:hdfs /var/lib/hadoop/cache
-	    echo "hdfs	ALL=(ALL)	NOPASSWD: ALL" >> /etc/sudoers
+            echo "hdfs	ALL=(ALL)	NOPASSWD: ALL" >> /etc/sudoers
             sudo -u hdfs ssh-keygen -N "" -C "hdfs" -f /usr/lib/hadoop/.ssh/id_rsa
             cp /home/ec2-user/.ssh/authorized_keys /usr/lib/hadoop/.ssh/
             chown hdfs:hdfs /usr/lib/hadoop/.ssh/authorized_keys
@@ -162,7 +162,7 @@ resources:
               chown hdfs:hdfs $dir
             done
             chown -R hdfs:hdfs /var/lib/hadoop/cache
-	    echo "hdfs	ALL=(ALL)	NOPASSWD: ALL" >> /etc/sudoers
+            echo "hdfs	ALL=(ALL)	NOPASSWD: ALL" >> /etc/sudoers
             sudo -u hdfs ssh-keygen -N "" -C "hdfs" -f /usr/lib/hadoop/.ssh/id_rsa
             cp /home/ec2-user/.ssh/authorized_keys /usr/lib/hadoop/.ssh/
             chown hdfs:hdfs /usr/lib/hadoop/.ssh/authorized_keys
@@ -195,7 +195,7 @@ resources:
               chown hdfs:hdfs $dir
             done
             chown -R hdfs:hdfs /var/lib/hadoop/cache
-	    echo "hdfs	ALL=(ALL)	NOPASSWD: ALL" >> /etc/sudoers
+            echo "hdfs	ALL=(ALL)	NOPASSWD: ALL" >> /etc/sudoers
             sudo -u hdfs ssh-keygen -N "" -C "hdfs" -f /usr/lib/hadoop/.ssh/id_rsa
             cp /home/ec2-user/.ssh/authorized_keys /usr/lib/hadoop/.ssh/
             chown hdfs:hdfs /usr/lib/hadoop/.ssh/authorized_keys
