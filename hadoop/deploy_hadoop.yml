@@ -52,6 +52,10 @@ resources:
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
             done
+            for a in $(seq 5); do
+              mkdir /data0$a
+              chown hdfs:hdfs /data0$a
+            done
             sudo -u hdfs ssh-keygen -N "" -C "hdfs" -f /usr/lib/hadoop/.ssh/id_rsa
             cp /home/ec2-user/.ssh/authorized_keys /usr/lib/hadoop/.ssh/
             cat /usr/lib/hadoop/.ssh/id_rsa.pub >> /usr/lib/hadoop/.ssh/authorized_keys
@@ -85,6 +89,10 @@ resources:
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
             done
+            for a in $(seq 5); do
+              mkdir /data0$a
+              chown hdfs:hdfs /data0$a
+            done
             sudo -u hdfs ssh-keygen -N "" -C "hdfs" -f /usr/lib/hadoop/.ssh/id_rsa
             cp /home/ec2-user/.ssh/authorized_keys /usr/lib/hadoop/.ssh/
             chown hdfs:hdfs /usr/lib/hadoop/.ssh/authorized_keys
@@ -111,6 +119,10 @@ resources:
             for file in {core-site.xml,hdfs-site.xml,mapred-site.xml,masters,slaves}; do
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
+            done
+            for a in $(seq 5); do
+              mkdir /data0$a
+              chown hdfs:hdfs /data0$a
             done
             sudo -u hdfs ssh-keygen -N "" -C "hdfs" -f /usr/lib/hadoop/.ssh/id_rsa
             cp /home/ec2-user/.ssh/authorized_keys /usr/lib/hadoop/.ssh/
@@ -139,6 +151,10 @@ resources:
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
             done
+            for a in $(seq 5); do
+              mkdir /data0$a
+              chown hdfs:hdfs /data0$a
+            done
             sudo -u hdfs ssh-keygen -N "" -C "hdfs" -f /usr/lib/hadoop/.ssh/id_rsa
             cp /home/ec2-user/.ssh/authorized_keys /usr/lib/hadoop/.ssh/
             chown hdfs:hdfs /usr/lib/hadoop/.ssh/authorized_keys
@@ -165,6 +181,10 @@ resources:
             for file in {core-site.xml,hdfs-site.xml,mapred-site.xml,masters,slaves}; do
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
+            done
+            for a in $(seq 5); do
+              mkdir /data0$a
+              chown hdfs:hdfs /data0$a
             done
             sudo -u hdfs ssh-keygen -N "" -C "hdfs" -f /usr/lib/hadoop/.ssh/id_rsa
             cp /home/ec2-user/.ssh/authorized_keys /usr/lib/hadoop/.ssh/
