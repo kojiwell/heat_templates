@@ -84,34 +84,34 @@ How to
 6. Test
 
    ```
-   wget http://norvig.com/big.txt -P ~/
-   ./bin/hadoop dfs -copyFromLocal ~/big.txt big.txt
-   ./bin/hadoop jar hadoop*examples*.jar wordcount big.txt output
-   ./bin/hadoop dfs -ls
-   ./bin/hadoop dfs -get output ~/local_output
-   ./bin/hadoop dfs -rmr output
-   less ~/local_output/part-r-00000
+   hdfs@node01$ wget http://norvig.com/big.txt -P ~/
+   hdfs@node01$ ./bin/hadoop dfs -copyFromLocal ~/big.txt big.txt
+   hdfs@node01$ ./bin/hadoop jar hadoop*examples*.jar wordcount big.txt output
+   hdfs@node01$ ./bin/hadoop dfs -ls
+   hdfs@node01$ ./bin/hadoop dfs -get output ~/local_output
+   hdfs@node01$ ./bin/hadoop dfs -rmr output
+   hdfs@node01$ less ~/local_output/part-r-00000
    ```
 
 7. Add a new user
 
    ```
-   sudo useradd user1 -m -s /bin/bash
-   hadoop fs -mkdir /user/user1
-   hadoop fs -chown user1:user1 /user/user1
+   hdfs@node01$ sudo useradd user1 -m -s /bin/bash
+   hdfs@node01$ hadoop fs -mkdir /user/user1
+   hdfs@node01$ hadoop fs -chown user1:user1 /user/user1
    ```
 
-   You should be able to do step 6 by the ``user1`` like this.
+   You should be able to do the step 6 by the ``user1`` the same way.
 
    ```
-   sudo -i -u user1
-   wget http://norvig.com/big.txt -P ~/
-   ./bin/hadoop dfs -copyFromLocal ~/big.txt big.txt
-   ./bin/hadoop jar hadoop*examples*.jar wordcount big.txt output
-   ./bin/hadoop dfs -ls
-   ./bin/hadoop dfs -get output ~/local_output
-   ./bin/hadoop dfs -rmr output
-   less ~/local_output/part-r-00000
+   hdfs@node01$ sudo -i -u user1
+   user1@node01$ wget http://norvig.com/big.txt -P ~/
+   user1@node01$ ./bin/hadoop dfs -copyFromLocal ~/big.txt big.txt
+   user1@node01$ ./bin/hadoop jar hadoop*examples*.jar wordcount big.txt output
+   user1@node01$ ./bin/hadoop dfs -ls
+   user1@node01$ ./bin/hadoop dfs -get output ~/local_output
+   user1@node01$ ./bin/hadoop dfs -rmr output
+   user1@node01$ less ~/local_output/part-r-00000
    ```
 
 8. Stop Hadoop
