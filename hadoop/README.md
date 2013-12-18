@@ -53,7 +53,10 @@ Deploy Hadoop
 2. Register hdfs's authorized_keys
 
    ```
+   # Get authorized_keys from node01
    scp -p hdfs@192.168.11.1:.ssh/authorized_keys hdfs_auth_keys
+
+   # Upload authorized_keys to the other nodes
    scp -p hdfs_auth_keys hdfs@192.168.11.2:.ssh/authorized_keys
    scp -p hdfs_auth_keys hdfs@192.168.11.3:.ssh/authorized_keys
    scp -p hdfs_auth_keys hdfs@192.168.11.4:.ssh/authorized_keys
