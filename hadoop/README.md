@@ -33,7 +33,8 @@ How to
        -P "key_name=<key name>;image_name=<image name>"
    ```
 
-   The template creates 5 node Hadoop cluster as the diagram below indicates.
+   The template creates Hadoop cluster as the diagram below indicates. (IP addresses are differently 
+   assigned depending on the environment.)
 
    ```
     Network
@@ -93,7 +94,7 @@ How to
    hdfs@node01$ less ~/local_output/part-r-00000
    ```
 
-7. Add a new user
+7. Add a new user, for example, ``user1``.
 
    ```
    hdfs@node01$ sudo useradd user1 -m -s /bin/bash
