@@ -53,7 +53,7 @@ resources:
             done
             sudo -u hdfs ssh-keygen -N "" -C "hdfs" -f /usr/lib/hadoop/.ssh/id_rsa
             cp /home/ec2-user/.ssh/authorized_keys /usr/lib/hadoop/.ssh/
-	    cat /usr/lib/hadoop/.ssh/id_rsa.pub >> /usr/lib/hadoop/.ssh/authorized_keys
+            cat /usr/lib/hadoop/.ssh/id_rsa.pub >> /usr/lib/hadoop/.ssh/authorized_keys
             chown hdfs:hdfs /usr/lib/hadoop/.ssh/authorized_keys
           params:
             $node02_ip: { get_attr: [ node02, first_address ] }
