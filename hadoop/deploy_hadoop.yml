@@ -47,6 +47,7 @@ resources:
             echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
             apt-get -y install oracle-java7-installer
             apt-get -y install hadoop
+            echo "export JAVA_HOME=/usr/lib/jvm/java-7-oracle" >> /usr/lib/hadoop/conf/hadoop-env.sh
             for file in {core-site.xml,hdfs-site.xml,mapred-site.xml,masters,slaves}; do
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
@@ -79,6 +80,7 @@ resources:
             echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
             apt-get -y install oracle-java7-installer
             apt-get -y install hadoop
+            echo "export JAVA_HOME=/usr/lib/jvm/java-7-oracle" >> /usr/lib/hadoop/conf/hadoop-env.sh
             for file in {core-site.xml,hdfs-site.xml,mapred-site.xml,masters,slaves}; do
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
@@ -105,6 +107,7 @@ resources:
             echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
             apt-get -y install oracle-java7-installer
             apt-get -y install hadoop
+            echo "export JAVA_HOME=/usr/lib/jvm/java-7-oracle" >> /usr/lib/hadoop/conf/hadoop-env.sh
             for file in {core-site.xml,hdfs-site.xml,mapred-site.xml,masters,slaves}; do
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
@@ -131,6 +134,7 @@ resources:
             echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
             apt-get -y install oracle-java7-installer
             apt-get -y install hadoop
+            echo "export JAVA_HOME=/usr/lib/jvm/java-7-oracle" >> /usr/lib/hadoop/conf/hadoop-env.sh
             for file in {core-site.xml,hdfs-site.xml,mapred-site.xml,masters,slaves}; do
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
@@ -157,6 +161,7 @@ resources:
             echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
             apt-get -y install oracle-java7-installer
             apt-get -y install hadoop
+            echo "export JAVA_HOME=/usr/lib/jvm/java-7-oracle" >> /usr/lib/hadoop/conf/hadoop-env.sh
             for file in {core-site.xml,hdfs-site.xml,mapred-site.xml,masters,slaves}; do
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
