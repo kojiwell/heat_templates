@@ -38,7 +38,7 @@ How to
    ```
     Network
     ---------------------------------------------------------------------------------------------------
-         |                   |                   |                   |                   |
+         | 192.168.11.1      | 192.168.11.2      | 192.168.11.3      | 192.168.11.4      | 192.168.11.5
      +----------------+  +----------------+  +----------------+  +----------------+  +----------------+
      | node01[master] |  | node02[master] |  | node03[slave]  |  | node04[slave]  |  | node05[slave]  |
      | -------------- |  | -------------- |  | -------------- |  | -------------- |  | -------------- |
@@ -52,17 +52,17 @@ How to
 2. Register hdfs's authorized_keys
 
    ```
-   scp -p hdfs@<node01's ip>:.ssh/authorized_keys hdfs_auth_keys
-   scp -p hdfs_auth_keys hdfs@<node02's ip>:.ssh/authorized_keys
-   scp -p hdfs_auth_keys hdfs@<node03's ip>:.ssh/authorized_keys
-   scp -p hdfs_auth_keys hdfs@<node04's ip>:.ssh/authorized_keys
-   scp -p hdfs_auth_keys hdfs@<node05's ip>:.ssh/authorized_keys
+   scp -p hdfs@192.168.11.1:.ssh/authorized_keys hdfs_auth_keys
+   scp -p hdfs_auth_keys hdfs@192.168.11.2:.ssh/authorized_keys
+   scp -p hdfs_auth_keys hdfs@192.168.11.3:.ssh/authorized_keys
+   scp -p hdfs_auth_keys hdfs@192.168.11.4:.ssh/authorized_keys
+   scp -p hdfs_auth_keys hdfs@192.168.11.5:.ssh/authorized_keys
    ```
 
 3. Copy /etc/hosts from node01 to the others
 
    ```
-   ssh hdfs@<node01's ip>
+   ssh hdfs@192.168.11.1
    hdfs@node01$ cat /etc/hosts | ssh node02 'sudo sh -c "cat > /etc/hosts"'
    hdfs@node01$ cat /etc/hosts | ssh node03 'sudo sh -c "cat > /etc/hosts"'
    hdfs@node01$ cat /etc/hosts | ssh node04 'sudo sh -c "cat > /etc/hosts"'
