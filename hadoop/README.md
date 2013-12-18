@@ -69,7 +69,7 @@ Deploy Hadoop
    # Login to node01
    ssh hdfs@192.168.11.1
 
-   # update /etc/hosts
+   hdfs@node01:~$ # update /etc/hosts
    hdfs@node01:~$ cat /etc/hosts | ssh node02 'sudo sh -c "cat > /etc/hosts"'
      Are you sure you want to continue connecting (yes/no)? yes
    hdfs@node01:~$ cat /etc/hosts | ssh node03 'sudo sh -c "cat > /etc/hosts"'
@@ -79,7 +79,7 @@ Deploy Hadoop
    hdfs@node01:~$ cat /etc/hosts | ssh node05 'sudo sh -c "cat > /etc/hosts"'
      Are you sure you want to continue connecting (yes/no)? yes
 
-   # Register node01(itself) on ~/.ssh/known_hosts.
+   hdfs@node01:~$ # Register node01(itself) on ~/.ssh/known_hosts.
    hdfs@node01:~$ ssh node01 hostname
      Are you sure you want to continue connecting (yes/no)? yes
    ```
