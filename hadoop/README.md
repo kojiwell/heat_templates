@@ -54,7 +54,40 @@ README
    hdfs@node01$ ./bin/start-all.sh
    ```
 
-6. Stop Hadoop
+6. Test
+
+   ```
+   wget http://norvig.com/big.txt -P ~/
+   ./bin/hadoop dfs -copyFromLocal ~/big.txt big.txt
+   ./bin/hadoop jar hadoop*examples*.jar wordcount big.txt output
+   ./bin/hadoop dfs -ls
+   ./bin/hadoop dfs -get output ~/local_output
+   ./bin/hadoop dfs -rmr output
+   less ~/local_output/part-r-00000
+   ```
+
+7. Add user
+
+   ```
+   sudo useradd user1 -m -s /bin/bash
+   hadoop fs -mkdir /user/user1
+   hadoop fs -chown user1:user1 /user/user1
+   ```
+
+   You should be able to do step 6 by the ``newuser``.
+
+   ```
+   sudo -i -u user1
+   wget http://norvig.com/big.txt -P ~/
+   ./bin/hadoop dfs -copyFromLocal ~/big.txt big.txt
+   ./bin/hadoop jar hadoop*examples*.jar wordcount big.txt output
+   ./bin/hadoop dfs -ls
+   ./bin/hadoop dfs -get output ~/local_output
+   ./bin/hadoop dfs -rmr output
+   less ~/local_output/part-r-00000
+   ```
+
+8. Stop Hadoop
 
    ```
    hdfs@node01$ ./bin/stop-all.sh
