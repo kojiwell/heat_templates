@@ -1,22 +1,29 @@
 heat_template_version: 2013-05-23
 
-description: Deploy Hadoop Cluster
+description: Deploy hadoop cluster
 
 parameters:
-  keyname:
+  key_name:
     type: string
-    description: Key name for loggin in to instances
-  imagename:
+    description: Name of keypair
+  instance_type:
     type: string
-    description: Image name
+    description: Type of instance
+    default: m1.small
+    constraints:
+      - allowed_values: [m1.small, m1.medium, m1.large]
+        description: instance_type must be one of m1.small, m1.medium or m1.large
+  image_name:
+    type: string
+    description: Name of image
 
 resources:
   node01:
     type: OS::Nova::Server
     properties:
-      key_name: { get_param: keyname }
-      image: { get_param: imagename }
-      flavor: m1.small
+      key_name: { get_param: key_name }
+      image: { get_param: image_name }
+      flavor: { get_param: instance_type }
       name: node01
       user_data:
         str_replace:
@@ -39,7 +46,7 @@ resources:
             echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
             apt-get -y install oracle-java7-installer
             apt-get -y install hadoop
-            for file in core-site.xml hdfs-site.xml mapred-site.xml masters slaves; do
+            for file in {core-site.xml,hdfs-site.xml,mapred-site.xml,masters,slaves}; do
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
             done
@@ -51,9 +58,9 @@ resources:
   node02:
     type: OS::Nova::Server
     properties:
-      key_name: { get_param: keyname }
-      image: { get_param: imagename }
-      flavor: m1.small
+      key_name: { get_param: key_name }
+      image: { get_param: image_name }
+      flavor: { get_param: instance_type }
       name: node02
       user_data:
         str_replace:
@@ -67,16 +74,16 @@ resources:
             echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
             apt-get -y install oracle-java7-installer
             apt-get -y install hadoop
-            for file in core-site.xml hdfs-site.xml mapred-site.xml masters slaves; do
+            for file in {core-site.xml,hdfs-site.xml,mapred-site.xml,masters,slaves}; do
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
             done
   node03:
     type: OS::Nova::Server
     properties:
-      key_name: { get_param: keyname }
-      image: { get_param: imagename }
-      flavor: m1.small
+      key_name: { get_param: key_name }
+      image: { get_param: image_name }
+      flavor: { get_param: instance_type }
       name: node03
       user_data:
         str_replace:
@@ -90,16 +97,16 @@ resources:
             echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
             apt-get -y install oracle-java7-installer
             apt-get -y install hadoop
-            for file in core-site.xml hdfs-site.xml mapred-site.xml masters slaves; do
+            for file in {core-site.xml,hdfs-site.xml,mapred-site.xml,masters,slaves}; do
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
             done
   node04:
     type: OS::Nova::Server
     properties:
-      key_name: { get_param: keyname }
-      image: { get_param: imagename }
-      flavor: m1.small
+      key_name: { get_param: key_name }
+      image: { get_param: image_name }
+      flavor: { get_param: instance_type }
       name: node04
       user_data:
         str_replace:
@@ -113,16 +120,16 @@ resources:
             echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
             apt-get -y install oracle-java7-installer
             apt-get -y install hadoop
-            for file in core-site.xml hdfs-site.xml mapred-site.xml masters slaves; do
+            for file in {core-site.xml,hdfs-site.xml,mapred-site.xml,masters,slaves}; do
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
             done
   node05:
     type: OS::Nova::Server
     properties:
-      key_name: { get_param: keyname }
-      image: { get_param: imagename }
-      flavor: m1.small
+      key_name: { get_param: key_name }
+      image: { get_param: image_name }
+      flavor: { get_param: instance_type }
       name: node05
       user_data:
         str_replace:
@@ -136,7 +143,16 @@ resources:
             echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
             apt-get -y install oracle-java7-installer
             apt-get -y install hadoop
-            for file in core-site.xml hdfs-site.xml mapred-site.xml masters slaves; do
+            for file in {core-site.xml,hdfs-site.xml,mapred-site.xml,masters,slaves}; do
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
             done
+
+outputs:
+  ssh_login:
+    description: ssh login to master
+    value:
+      str_replace:
+        template: ssh ec2_user@$node01_ip
+        value:
+          $node01_ip: { get_attr: [ node01, first_address ] }
