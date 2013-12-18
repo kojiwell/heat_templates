@@ -66,7 +66,7 @@ README
    less ~/local_output/part-r-00000
    ```
 
-7. Add user
+7. Add a new user
 
    ```
    sudo useradd user1 -m -s /bin/bash
@@ -74,7 +74,7 @@ README
    hadoop fs -chown user1:user1 /user/user1
    ```
 
-   You should be able to do step 6 by the ``newuser`` like this.
+   You should be able to do step 6 by the ``user1`` like this.
 
    ```
    sudo -i -u user1
