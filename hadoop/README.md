@@ -16,15 +16,15 @@ Requirements
 
 Preferred
 ---------
-* It is better you have your ``~/.ssh/id_dsa.pub`` or ``~/.ssh/id_rsa.pub`` registered. 
-  If not, register it like this.
+* It is probably better you have your default ssh key, ``~/.ssh/id_dsa.pub`` or ``~/.ssh/id_rsa.pub``, 
+  registered. You should be able to do it with this.
 
   ```
   nova keypair-add --pub-key ~/.ssh/id_dsa.pub <key name>
   ```
 
-How to
-------
+Deploy Hadoop
+-------------
 
 1. Create Hadoop cluster
 
@@ -81,19 +81,22 @@ How to
      Are you sure you want to continue connecting (yes/no)? yes
    ```
 
-4. Format HDFS
+Use Hadoop
+----------
+
+1. Format HDFS
 
    ```
    hdfs@node01:~$ hadoop namenode -format
    ```
 
-5. Start Hadoop
+2. Start Hadoop
 
    ```
    hdfs@node01:~$ ./bin/start-all.sh
    ```
 
-6. Try a WordCount example
+3. Try a WordCount example
 
    ```
    hdfs@node01:~$ wget http://norvig.com/big.txt -P ~/
@@ -105,7 +108,7 @@ How to
    hdfs@node01:~$ less ~/local_output/part-r-00000
    ```
 
-7. Add a new user, for example, ``john``.
+4. Add a new user, for example, ``john``.
 
    ```
    hdfs@node01:~$ sudo useradd john -m -s /bin/bash
@@ -126,7 +129,7 @@ How to
    john@node01:~$ less ~/local_output/part-r-00000
    ```
 
-8. Stop Hadoop
+5. Stop Hadoop
 
    ```
    hdfs@node01:~$ ./bin/stop-all.sh
