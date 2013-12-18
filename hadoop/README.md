@@ -67,67 +67,67 @@ How to
    ssh hdfs@192.168.11.1
 
    # update /etc/hosts
-   hdfs@node01$ cat /etc/hosts | ssh node02 'sudo sh -c "cat > /etc/hosts"'
+   hdfs@node01:~$ cat /etc/hosts | ssh node02 'sudo sh -c "cat > /etc/hosts"'
      Are you sure you want to continue connecting (yes/no)? yes
-   hdfs@node01$ cat /etc/hosts | ssh node03 'sudo sh -c "cat > /etc/hosts"'
+   hdfs@node01:~$ cat /etc/hosts | ssh node03 'sudo sh -c "cat > /etc/hosts"'
      Are you sure you want to continue connecting (yes/no)? yes
-   hdfs@node01$ cat /etc/hosts | ssh node04 'sudo sh -c "cat > /etc/hosts"'
+   hdfs@node01:~$ cat /etc/hosts | ssh node04 'sudo sh -c "cat > /etc/hosts"'
      Are you sure you want to continue connecting (yes/no)? yes
-   hdfs@node01$ cat /etc/hosts | ssh node05 'sudo sh -c "cat > /etc/hosts"'
+   hdfs@node01:~$ cat /etc/hosts | ssh node05 'sudo sh -c "cat > /etc/hosts"'
      Are you sure you want to continue connecting (yes/no)? yes
 
    # Register node01(itself) on ~/.ssh/known_hosts.
-   hdfs@node01$ ssh node01 hostname
+   hdfs@node01:~$ ssh node01 hostname
      Are you sure you want to continue connecting (yes/no)? yes
    ```
 
 4. Format HDFS
 
    ```
-   hdfs@node01$ hadoop namenode -format
+   hdfs@node01:~$ hadoop namenode -format
    ```
 
 5. Start Hadoop
 
    ```
-   hdfs@node01$ ./bin/start-all.sh
+   hdfs@node01:~$ ./bin/start-all.sh
    ```
 
 6. Test
 
    ```
-   hdfs@node01$ wget http://norvig.com/big.txt -P ~/
-   hdfs@node01$ ./bin/hadoop dfs -copyFromLocal ~/big.txt big.txt
-   hdfs@node01$ ./bin/hadoop jar hadoop*examples*.jar wordcount big.txt output
-   hdfs@node01$ ./bin/hadoop dfs -ls
-   hdfs@node01$ ./bin/hadoop dfs -get output ~/local_output
-   hdfs@node01$ ./bin/hadoop dfs -rmr output
-   hdfs@node01$ less ~/local_output/part-r-00000
+   hdfs@node01:~$ wget http://norvig.com/big.txt -P ~/
+   hdfs@node01:~$ hadoop fs -copyFromLocal ~/big.txt big.txt
+   hdfs@node01:~$ hadoop jar /usr/lib/hadoop/hadoop*examples*.jar wordcount big.txt output
+   hdfs@node01:~$ hadoop fs -ls
+   hdfs@node01:~$ hadoop fs -get output ~/local_output
+   hdfs@node01:~$ hadoop fs -rmr output
+   hdfs@node01:~$ less ~/local_output/part-r-00000
    ```
 
 7. Add a new user, for example, ``john``.
 
    ```
-   hdfs@node01$ sudo useradd john -m -s /bin/bash
-   hdfs@node01$ hadoop fs -mkdir /user/john
-   hdfs@node01$ hadoop fs -chown john:john /user/john
+   hdfs@node01:~$ sudo useradd john -m -s /bin/bash
+   hdfs@node01:~$ hadoop fs -mkdir /user/john
+   hdfs@node01:~$ hadoop fs -chown john:john /user/john
    ```
 
    You should be able to do the step 6 by the ``john`` the same way.
 
    ```
-   hdfs@node01$ sudo -i -u john
-   john@node01$ wget http://norvig.com/big.txt -P ~/
-   john@node01$ ./bin/hadoop dfs -copyFromLocal ~/big.txt big.txt
-   john@node01$ ./bin/hadoop jar hadoop*examples*.jar wordcount big.txt output
-   john@node01$ ./bin/hadoop dfs -ls
-   john@node01$ ./bin/hadoop dfs -get output ~/local_output
-   john@node01$ ./bin/hadoop dfs -rmr output
-   john@node01$ less ~/local_output/part-r-00000
+   hdfs@node01:~$ sudo -i -u john
+   john@node01:~$ wget http://norvig.com/big.txt -P ~/
+   john@node01:~$ hadoop fs -copyFromLocal ~/big.txt big.txt
+   john@node01:~$ hadoop jar /usr/lib/hadoop/hadoop*examples*.jar wordcount big.txt output
+   john@node01:~$ hadoop fs -ls
+   john@node01:~$ hadoop fs -get output ~/local_output
+   john@node01:~$ hadoop fs -rmr output
+   john@node01:~$ less ~/local_output/part-r-00000
    ```
 
 8. Stop Hadoop
 
    ```
-   hdfs@node01$ ./bin/stop-all.sh
+   hdfs@node01:~$ ./bin/stop-all.sh
    ```
