@@ -38,6 +38,7 @@ resources:
             $node04_ip node04
             $node05_ip node05
             EOF
+
             echo "Install Hadoop Packages"
             add-apt-repository -y ppa:webupd8team/java
             add-apt-repository -y ppa:hadoop-ubuntu/stable
@@ -50,6 +51,9 @@ resources:
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
             done
+            sudo -u hdfs ssh-keygen -N "" -C "hdfs@node01" -f /usr/lib/hadoop/.ssh/id_rsa
+            cp /home/ec2-user/.ssh/authorized_keys /usr/lib/hadoop/.ssh/
+            chown hdfs:hdfs /usr/lib/hadoop/.ssh/authorized_keys
           params:
             $node02_ip: { get_attr: [ node02, first_address ] }
             $node03_ip: { get_attr: [ node03, first_address ] }
@@ -153,6 +157,6 @@ outputs:
     description: ssh login to master
     value:
       str_replace:
-        template: ssh ec2_user@$node01_ip
+        template: ssh ec2-user@$node01_ip
         value:
           $node01_ip: { get_attr: [ node01, first_address ] }
