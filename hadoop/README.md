@@ -74,7 +74,7 @@ README
    hadoop fs -chown user1:user1 /user/user1
    ```
 
-   You should be able to do step 6 by the ``newuser``.
+   You should be able to do step 6 by the ``newuser`` like this.
 
    ```
    sudo -i -u user1
