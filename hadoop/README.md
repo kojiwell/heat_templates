@@ -94,25 +94,25 @@ How to
    hdfs@node01$ less ~/local_output/part-r-00000
    ```
 
-7. Add a new user, for example, ``user1``.
+7. Add a new user, for example, ``john``.
 
    ```
-   hdfs@node01$ sudo useradd user1 -m -s /bin/bash
-   hdfs@node01$ hadoop fs -mkdir /user/user1
-   hdfs@node01$ hadoop fs -chown user1:user1 /user/user1
+   hdfs@node01$ sudo useradd john -m -s /bin/bash
+   hdfs@node01$ hadoop fs -mkdir /user/john
+   hdfs@node01$ hadoop fs -chown john:john /user/john
    ```
 
-   You should be able to do the step 6 by the ``user1`` the same way.
+   You should be able to do the step 6 by the ``john`` the same way.
 
    ```
-   hdfs@node01$ sudo -i -u user1
-   user1@node01$ wget http://norvig.com/big.txt -P ~/
-   user1@node01$ ./bin/hadoop dfs -copyFromLocal ~/big.txt big.txt
-   user1@node01$ ./bin/hadoop jar hadoop*examples*.jar wordcount big.txt output
-   user1@node01$ ./bin/hadoop dfs -ls
-   user1@node01$ ./bin/hadoop dfs -get output ~/local_output
-   user1@node01$ ./bin/hadoop dfs -rmr output
-   user1@node01$ less ~/local_output/part-r-00000
+   hdfs@node01$ sudo -i -u john
+   john@node01$ wget http://norvig.com/big.txt -P ~/
+   john@node01$ ./bin/hadoop dfs -copyFromLocal ~/big.txt big.txt
+   john@node01$ ./bin/hadoop jar hadoop*examples*.jar wordcount big.txt output
+   john@node01$ ./bin/hadoop dfs -ls
+   john@node01$ ./bin/hadoop dfs -get output ~/local_output
+   john@node01$ ./bin/hadoop dfs -rmr output
+   john@node01$ less ~/local_output/part-r-00000
    ```
 
 8. Stop Hadoop
