@@ -65,9 +65,15 @@ How to
    ```
    ssh hdfs@192.168.11.1
    hdfs@node01$ cat /etc/hosts | ssh node02 'sudo sh -c "cat > /etc/hosts"'
+     Are you sure you want to continue connecting (yes/no)? yes
    hdfs@node01$ cat /etc/hosts | ssh node03 'sudo sh -c "cat > /etc/hosts"'
+     Are you sure you want to continue connecting (yes/no)? yes
    hdfs@node01$ cat /etc/hosts | ssh node04 'sudo sh -c "cat > /etc/hosts"'
+     Are you sure you want to continue connecting (yes/no)? yes
    hdfs@node01$ cat /etc/hosts | ssh node05 'sudo sh -c "cat > /etc/hosts"'
+     Are you sure you want to continue connecting (yes/no)? yes
+   hdfs@node01$ ssh localhost hostname
+     Are you sure you want to continue connecting (yes/no)? yes
    ```
 
 4. Format HDFS
