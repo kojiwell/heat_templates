@@ -28,6 +28,7 @@ resources:
             echo -e 'file_roots:\n  base:\n    - /srv/salt' >> /etc/salt/master
             pkill salt-master
             service iptables stop
+            chkconfig iptables off
             salt-master -d
   minion01:
     type: OS::Nova::Server
@@ -45,6 +46,7 @@ resources:
             echo master: $master >> /etc/salt/minion
             pkill salt-minion
             service iptables stop
+            chkconfig iptables off
             salt-minion -d
           params:
             $master: { get_attr: [ master, first_address ] }
@@ -64,6 +66,7 @@ resources:
             echo master: $master >> /etc/salt/minion
             pkill salt-minion
             service iptables stop
+            chkconfig iptables off
             salt-minion -d
           params:
             $master: { get_attr: [ master, first_address ] }
@@ -83,6 +86,7 @@ resources:
             echo master: $master >> /etc/salt/minion
             pkill salt-minion
             service iptables stop
+            chkconfig iptables off
             salt-minion -d
           params:
             $master: { get_attr: [ master, first_address ] }
@@ -102,6 +106,7 @@ resources:
             echo master: $master >> /etc/salt/minion
             pkill salt-minion
             service iptables stop
+            chkconfig iptables off
             salt-minion -d
           params:
             $master: { get_attr: [ master, first_address ] }

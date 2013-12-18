@@ -6,6 +6,6 @@ This is an example of HOT(Heat Orchestration Template), which deploy [SaltStack]
 You can build it with one command.
 ```
 heat stack-create saltstack \
-  -u https://gist.github.com/kjtanaka/7935747/raw/6fcfce4d28b9d5dd7a5b824b678151cc64f522b7/deploy_salt.yml \
+  -u https://raw.github.com/kjtanaka/heat_templates/master/saltstack/deploy_salt.yml \
   -P "keyname=<key_name>;imagename=<image_name>"
 ```
