@@ -51,8 +51,9 @@ resources:
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
             done
-            sudo -u hdfs ssh-keygen -N "" -C "hdfs@node01" -f /usr/lib/hadoop/.ssh/id_rsa
+            sudo -u hdfs ssh-keygen -N "" -C "hdfs" -f /usr/lib/hadoop/.ssh/id_rsa
             cp /home/ec2-user/.ssh/authorized_keys /usr/lib/hadoop/.ssh/
+	    cat /usr/lib/hadoop/.ssh/id_rsa.pub >> /usr/lib/hadoop/.ssh/authorized_keys
             chown hdfs:hdfs /usr/lib/hadoop/.ssh/authorized_keys
           params:
             $node02_ip: { get_attr: [ node02, first_address ] }
@@ -82,6 +83,9 @@ resources:
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
             done
+            sudo -u hdfs ssh-keygen -N "" -C "hdfs" -f /usr/lib/hadoop/.ssh/id_rsa
+            cp /home/ec2-user/.ssh/authorized_keys /usr/lib/hadoop/.ssh/
+            chown hdfs:hdfs /usr/lib/hadoop/.ssh/authorized_keys
   node03:
     type: OS::Nova::Server
     properties:
@@ -105,6 +109,9 @@ resources:
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
             done
+            sudo -u hdfs ssh-keygen -N "" -C "hdfs" -f /usr/lib/hadoop/.ssh/id_rsa
+            cp /home/ec2-user/.ssh/authorized_keys /usr/lib/hadoop/.ssh/
+            chown hdfs:hdfs /usr/lib/hadoop/.ssh/authorized_keys
   node04:
     type: OS::Nova::Server
     properties:
@@ -128,6 +135,9 @@ resources:
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
             done
+            sudo -u hdfs ssh-keygen -N "" -C "hdfs" -f /usr/lib/hadoop/.ssh/id_rsa
+            cp /home/ec2-user/.ssh/authorized_keys /usr/lib/hadoop/.ssh/
+            chown hdfs:hdfs /usr/lib/hadoop/.ssh/authorized_keys
   node05:
     type: OS::Nova::Server
     properties:
@@ -151,6 +161,9 @@ resources:
               wget https://raw.github.com/kjtanaka/heat_templates/master/hadoop/conf/$file \
                   -N -P /usr/lib/hadoop/conf
             done
+            sudo -u hdfs ssh-keygen -N "" -C "hdfs" -f /usr/lib/hadoop/.ssh/id_rsa
+            cp /home/ec2-user/.ssh/authorized_keys /usr/lib/hadoop/.ssh/
+            chown hdfs:hdfs /usr/lib/hadoop/.ssh/authorized_keys
 
 outputs:
   ssh_login:
