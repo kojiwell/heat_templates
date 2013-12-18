@@ -24,6 +24,7 @@ Preferred
   ```
 
 How to
+------
 
 1. Create Hadoop cluster
 
