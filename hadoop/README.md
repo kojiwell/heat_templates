@@ -1,5 +1,5 @@
-Heat template: 5 nodes hadoop cluster
-=====================================
+Heat template: Hadoop cluster (5 nodes)
+=======================================
 
 Requirements
 ------------
