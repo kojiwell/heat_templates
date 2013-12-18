@@ -93,7 +93,7 @@ How to
    hdfs@node01:~$ ./bin/start-all.sh
    ```
 
-6. Test
+6. Try a WordCount example
 
    ```
    hdfs@node01:~$ wget http://norvig.com/big.txt -P ~/
@@ -113,7 +113,7 @@ How to
    hdfs@node01:~$ hadoop fs -chown john:john /user/john
    ```
 
-   You should be able to do the step 6 by the ``john`` the same way.
+   You should be able to try WardCount by ``john`` the same way.
 
    ```
    hdfs@node01:~$ sudo -i -u john
