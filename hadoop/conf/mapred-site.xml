@@ -12,7 +12,7 @@
 
   <property>
     <name>mapred.local.dir</name>
-    <value>/data00/mapred/local,/data01/mapred/local,/data02/mapred/local,/data03/mapred/local,/data04/mapred/local,/data05/mapred/local</value>
+    <value>/data01/mapred/local,/data02/mapred/local,/data03/mapred/local</value>
   </property>
 
   <property>

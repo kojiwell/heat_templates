@@ -27,7 +27,7 @@
 
   <property>
     <name>dfs.data.dir</name>
-    <value>/data00/dfs/dn,/data01/dfs/dn,/data02/dfs/dn,/data03/dfs/dn,/data04/dfs/dn,/data05/dfs/dn</value>
+    <value>/data01/dfs/dn,/data02/dfs/dn,/data03/dfs/dn</value>
   </property>
 
   <property>
