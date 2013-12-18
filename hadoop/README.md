@@ -1,25 +1,51 @@
-README
-======
+Heat template: 5 nodes hadoop cluster
+=====================================
 
-```
- Network
- ---------------------------------------------------------------------------------------------------
-      |                   |                   |                   |                   |
-  +----------------+  +----------------+  +----------------+  +----------------+  +----------------+
-  | node01[master] |  | node02[master] |  | node03[slave]  |  | node04[slave]  |  | node05[slave]  |
-  | -------------- |  | -------------- |  | -------------- |  | -------------- |  | -------------- |
-  | NameNode       |  | SecondNameNode |  | DataNode       |  | DataNode       |  | DataNode       |
-  | SecondNameNode |  |                |  | TaskTracker    |  | TaskTracker    |  | TaskTracker    |
-  | JobTracker     |  |                |  |                |  |                |  |                |
-  |                |  |                |  |                |  |                |  |                |
-  +----------------+  +----------------+  +----------------+  +----------------+  +----------------+
-```
+Requirements
+------------
+* Access to a OpenStack Cloud with Heat
+* Ubuntu 12.04 LTS cloud image. If you don't have one, you should be able to register the image with this.
+
+  ```
+  glance image-create --name <image name> \
+      --location http://cloud-images.ubuntu.com/precise/current/precise-server-cloudimg-amd64-disk1.img \
+      --disk-format qcow2 \
+      --container-format bare \
+      --is-public false
+  ```
+
+Preferred
+---------
+* It is better you have your ``~/.ssh/id_dsa.pub`` or ``~/.ssh/id_rsa.pub`` registered. 
+  If not, register it like this.
+
+  ```
+  nova keypair-add --pub-key ~/.ssh/id_dsa.pub <key name>
+  ```
+
+How to
 
 1. Create Hadoop cluster
 
    ```
    heat stack-create hadoop -u https://raw.github.com/kjtanaka/heat_templates/master/hadoop/deploy_hadoop.yml \
        -P "key_name=<key name>;image_name=<image name>"
+   ```
+
+   The template creates 5 node Hadoop cluster as the diagram below indicates.
+
+   ```
+    Network
+    ---------------------------------------------------------------------------------------------------
+         |                   |                   |                   |                   |
+     +----------------+  +----------------+  +----------------+  +----------------+  +----------------+
+     | node01[master] |  | node02[master] |  | node03[slave]  |  | node04[slave]  |  | node05[slave]  |
+     | -------------- |  | -------------- |  | -------------- |  | -------------- |  | -------------- |
+     | NameNode       |  | SecondNameNode |  | DataNode       |  | DataNode       |  | DataNode       |
+     | SecondNameNode |  |                |  | TaskTracker    |  | TaskTracker    |  | TaskTracker    |
+     | JobTracker     |  |                |  |                |  |                |  |                |
+     |                |  |                |  |                |  |                |  |                |
+     +----------------+  +----------------+  +----------------+  +----------------+  +----------------+
    ```
 
 2. Register hdfs's authorized_keys
