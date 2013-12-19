@@ -1,4 +1,4 @@
-OpenStack Heat template: SaltStack cluster (5 nodes)
+SaltStack cluster (5 nodes)
 ====================================================
 
 This is an example of HOT(Heat Orchestration Template), which deploy [SaltStack](http://docs.saltstack.com/index.html) cluster, with 1 master node and 5 minion nodes.

@@ -131,3 +131,12 @@ How to
    ```
    hdfs@node01:~$ ./bin/stop-all.sh
    ```
+
+Questions
+---------
+
+I wrote the template to learn about HOT syntax, so I tried not to use another tool like Chef or Puppet.
+Here's the questions I had and the answers from the community.
+
+* [Can we use for-loop in Heat template?](https://answers.launchpad.net/heat/+question/240943)
+* [Is there some way to list all instances on /etc/hosts of all instances?](https://answers.launchpad.net/heat/+question/241010)
