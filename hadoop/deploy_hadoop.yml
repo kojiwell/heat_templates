@@ -202,9 +202,9 @@ resources:
 
 outputs:
   ssh_login:
-    description: ssh login to master
+    description: ssh login to node01(master node)
     value:
       str_replace:
-        template: ssh ec2-user@$node01_ip
+        template: ssh hdfs@$node01_ip
         value:
           $node01_ip: { get_attr: [ node01, first_address ] }
